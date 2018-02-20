@@ -1,0 +1,8 @@
+lambda-local -l index.js -e event.json --envfile local.environment.json
+lambda-local -l app.js -e event.json -E {\"MONGODB_ATLAS_CLUSTER_URI\":\"<connection_string>\"}
+lambda-local -l app.js -e event.json -E {\"MONGODB_ATLAS_CLUSTER_URI\":\"mongodb://lambda:lambda2018@clusterx-shard-00-00-u18h7.mongodb.net:27017,clusterx-shard-00-01-u18h7.mongodb.net:27017,clusterx-shard-00-02-u18h7.mongodb.net:27017/test?ssl=true&replicaSet=ClusterX-shard-0&authSource=admin\"}
+
+zip -r archive.zip node_modules/ app.js package.json
+
+Compress-Archive -Path node_modules/, index.js, package.json -DestinationPath index.zip
+
